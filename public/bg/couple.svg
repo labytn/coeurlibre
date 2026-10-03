@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1600" preserveAspectRatio="xMidYMax slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b1470"/>
+      <stop offset="0.32" stop-color="#8b1d6e"/>
+      <stop offset="0.58" stop-color="#e0446a"/>
+      <stop offset="0.80" stop-color="#fb8a72"/>
+      <stop offset="0.90" stop-color="#fdc08a"/>
+      <stop offset="1" stop-color="#ffe0b5"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff3d6" stop-opacity="1"/>
+      <stop offset="0.35" stop-color="#ffd0a0" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#ff8fa0" stop-opacity="0"/>
+    </radialGradient>
+    <symbol id="h" viewBox="-20 -20 40 40"><path d="M0 14C-26-4-12-22 0-8C12-22 26-4 0 14Z"/></symbol>
+  </defs>
+
+  <rect width="900" height="1600" fill="url(#sky)"/>
+
+  <!-- étoiles -->
+  <g fill="#fff" opacity="0.7">
+    <circle cx="90" cy="120" r="2.4"/><circle cx="240" cy="70" r="1.8"/><circle cx="420" cy="140" r="2.2"/>
+    <circle cx="610" cy="60" r="2"/><circle cx="780" cy="150" r="2.6"/><circle cx="160" cy="260" r="1.6"/>
+    <circle cx="700" cy="300" r="1.8"/><circle cx="520" cy="230" r="1.5"/><circle cx="330" cy="330" r="1.4"/>
+  </g>
+
+  <g transform="translate(0 60)">
+  <!-- soleil -->
+  <circle cx="450" cy="1180" r="330" fill="url(#sun)"/>
+  <circle cx="450" cy="1180" r="120" fill="#fff0d2" opacity="0.9"/>
+
+  <!-- collines lointaines -->
+  <path d="M0 1320 Q200 1240 430 1310 T900 1290 L900 1600 L0 1600Z" fill="#9b2a74" opacity="0.55"/>
+  <path d="M0 1360 Q260 1290 520 1350 T900 1340 L900 1600 L0 1600Z" fill="#5d1a63" opacity="0.8"/>
+  </g>
+
+  <!-- cœurs flottants -->
+  <g fill="#ffffff">
+    <use href="#h" x="150" y="980" width="44" height="44" opacity="0.5"/>
+    <use href="#h" x="290" y="860" width="30" height="30" opacity="0.4"/>
+    <use href="#h" x="620" y="900" width="52" height="52" opacity="0.45"/>
+    <use href="#h" x="740" y="1040" width="34" height="34" opacity="0.5"/>
+    <use href="#h" x="500" y="780" width="26" height="26" opacity="0.35"/>
+    <use href="#h" x="400" y="960" width="38" height="38" opacity="0.55"/>
+    <use href="#h" x="80" y="1130" width="28" height="28" opacity="0.4"/>
+  </g>
+
+  <!-- colline de premier plan + couple (silhouettes) -->
+  <path d="M0 1420 Q450 1340 900 1430 L900 1600 L0 1600Z" fill="#2a0b30" transform="translate(0 60)"/>
+  <g fill="#2a0b30" stroke="none" transform="translate(0 60) translate(450 1400) scale(0.78) translate(-450 -1400)">
+
+    <!-- elle -->
+    <ellipse cx="392" cy="1085" rx="27" ry="32"/>
+    <path d="M372 1072C334 1066 316 1112 328 1156C344 1124 360 1108 380 1100Z"/>
+    <rect x="385" y="1112" width="14" height="22"/>
+    <path d="M366 1138Q392 1126 418 1138L412 1215Q440 1260 452 1325Q392 1338 335 1325Q350 1260 372 1215Z"/>
+    <path d="M375 1322L372 1398L385 1398L389 1322Z"/>
+    <path d="M408 1322L412 1396L425 1396L419 1322Z"/>
+
+    <!-- lui -->
+    <ellipse cx="522" cy="1060" rx="29" ry="34"/>
+    <rect x="512" y="1090" width="20" height="24"/>
+    <path d="M484 1122Q522 1106 558 1122L554 1262L488 1262Z"/>
+    <path d="M490 1260L486 1404L513 1404L519 1260Z"/>
+    <path d="M523 1260L529 1404L556 1404L552 1260Z"/>
+
+    <!-- bras -->
+    <g fill="none" stroke="#2a0b30" stroke-linecap="round">
+      <path d="M416 1146Q446 1190 468 1246" stroke-width="14"/>
+      <path d="M368 1146Q350 1192 356 1242" stroke-width="13"/>
+      <path d="M488 1136Q470 1192 468 1246" stroke-width="16"/>
+      <path d="M556 1136Q568 1192 562 1252" stroke-width="15"/>
+    </g>
+    <circle cx="468" cy="1248" r="10"/>
+  </g>
+</svg>

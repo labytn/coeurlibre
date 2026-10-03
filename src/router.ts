@@ -1,11 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
+import { Capacitor } from '@capacitor/core'
 import { session, complete, restricted, isAdmin } from './lib/session'
 
 export const router = createRouter({
-  history: createWebHistory(),
+  history: Capacitor.isNativePlatform() ? createWebHashHistory() : createWebHistory(),
   routes: [
     { path: '/auth', name: 'auth', component: () => import('./pages/Auth.vue') },
     { path: '/cgu', name: 'cgu', component: () => import('./pages/Cgu.vue') },
+    { path: '/privacy', name: 'privacy', component: () => import('./pages/Privacy.vue') },
     { path: '/suspended', name: 'suspended', component: () => import('./pages/Suspended.vue') },
     { path: '/profile', name: 'profile', component: () => import('./pages/Profile.vue') },
     { path: '/verify', name: 'verify', component: () => import('./pages/Verify.vue') },
@@ -19,7 +21,7 @@ export const router = createRouter({
 })
 
 router.beforeEach(to => {
-  if (to.name === 'cgu') return true
+  if (to.name === 'cgu' || to.name === 'privacy') return true
   if (!session.value) return to.name === 'auth' ? true : { name: 'auth' }
   if (restricted.value) return to.name === 'suspended' ? true : { name: 'suspended' }
   if (to.name === 'suspended') return { name: 'home' }

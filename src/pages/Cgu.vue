@@ -1,6 +1,7 @@
 <script setup lang="ts">
-const editor = import.meta.env.VITE_EDITOR_NAME as string
-const mail = import.meta.env.VITE_CONTACT_EMAIL as string
+import { cfg } from '../lib/config'
+const editor = cfg('EDITOR_NAME')
+const mail = cfg('CONTACT_EMAIL')
 </script>
 
 <template>
@@ -38,7 +39,7 @@ const mail = import.meta.env.VITE_CONTACT_EMAIL as string
     <p>Vous restez propriétaire de vos contenus (photos, textes, messages). Vous accordez au service une licence non exclusive, gratuite et limitée à l'exploitation du service (affichage à d'autres membres, hébergement). Vous garantissez détenir les droits nécessaires sur ces contenus.</p>
 
     <h2>7. Données personnelles</h2>
-    <p>Les données collectées (e-mail, profil, photos, messages, interactions, signalements) servent à fournir le service, assurer la sécurité et la modération. Les photos et le profil sont visibles des autres membres ; l'e-mail et la date de naissance exacte ne le sont pas. Conformément au RGPD, vous disposez des droits d'accès, de rectification, d'effacement, d'opposition, de limitation et de portabilité : la suppression du compte est immédiate depuis la page Profil, et toute demande peut être adressée à {{ mail }}. Vous pouvez saisir la CNIL (cnil.fr). Les données sont supprimées à la clôture du compte ; les signalements peuvent être conservés le temps nécessaire à la sécurité du service.</p>
+    <p>Les données collectées (e-mail, profil, photos, messages, interactions, signalements) servent à fournir le service, assurer la sécurité et la modération. Les photos et le profil sont visibles des autres membres ; l'e-mail et la date de naissance exacte ne le sont pas. Conformément au RGPD, vous disposez des droits d'accès, de rectification, d'effacement, d'opposition, de limitation et de portabilité : la suppression du compte est immédiate depuis la page Profil, et toute demande peut être adressée à {{ mail }}. Pour le détail, consultez la <router-link to="/privacy" class="underline">politique de confidentialité</router-link>. Vous pouvez saisir la CNIL (cnil.fr). Les données sont supprimées à la clôture du compte ; les signalements peuvent être conservés le temps nécessaire à la sécurité du service.</p>
 
     <h2>8. Sécurité et prudence</h2>
     <p>Le service ne vérifie pas l'intégralité des profils et ne garantit ni l'identité, ni les intentions des membres. Soyez prudent : ne communiquez jamais d'argent, de coordonnées bancaires ou de documents d'identité, et donnez un premier rendez-vous dans un lieu public.</p>

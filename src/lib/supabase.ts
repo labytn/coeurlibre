@@ -1,5 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
+import { cfg } from './config'
+
 export const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL as string,
-  import.meta.env.VITE_SUPABASE_ANON_KEY as string
+  cfg('SUPABASE_URL') || 'https://config-manquante.invalid',
+  cfg('SUPABASE_ANON_KEY') || 'config-manquante'
 )

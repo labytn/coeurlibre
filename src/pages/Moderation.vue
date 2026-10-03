@@ -16,8 +16,11 @@ const err = ref('')
 const loading = ref(true)
 
 async function sign(bucket: string, paths: (string | null)[]) {
-  const clean = paths.filter(Boolean) as string[]
+  const all = paths.filter(Boolean) as string[]
   const m: Record<string, string> = {}
+  const isDemo = (p: string) => bucket === 'photos' && p.startsWith('demo/')
+  for (const p of all) if (isDemo(p)) m[p] = '/' + p
+  const clean = all.filter(p => !isDemo(p))
   if (!clean.length) return m
   const { data } = await supabase.storage.from(bucket).createSignedUrls(clean, 3600)
   for (const d of data ?? []) if (d.path && d.signedUrl) m[d.path] = d.signedUrl

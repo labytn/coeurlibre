@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { supabase } from '../lib/supabase'
-const mail = import.meta.env.VITE_CONTACT_EMAIL as string
+import { cfg } from '../lib/config'
+const mail = cfg('CONTACT_EMAIL')
 </script>
 
 <template>

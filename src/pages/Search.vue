@@ -39,7 +39,7 @@ async function like(p: Card) {
     <p v-if="msg" class="mt-3 rounded-lg bg-rose-100 p-2 text-center font-semibold text-rose-700">{{ msg }}</p>
     <p v-if="!loading" class="mt-4 text-sm text-zinc-500">{{ res.length }} profil(s)</p>
     <div v-for="p in res" :key="p.id" class="mt-2 flex items-center gap-3 rounded-xl border border-zinc-200 p-2 dark:border-zinc-800">
-      <img v-if="p.url" :src="p.url" class="h-14 w-14 rounded-full object-cover" alt="" />
+      <div class="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-zinc-300 dark:bg-zinc-700"><img v-if="p.url" :src="p.url" class="h-full w-full object-cover" alt="" /><span v-if="p.is_demo" class="absolute inset-x-0 bottom-0 bg-black/70 text-center text-[9px] font-bold leading-4 text-white">DÉMO</span></div>
       <div class="min-w-0 flex-1">
         <b>{{ p.display_name }}, {{ p.age }}</b> <span v-if="p.verified" title="Profil vérifié" class="text-sky-500">✔</span>
         <div class="truncate text-xs text-zinc-500">{{ p.city }} · {{ p.interests.join(', ') }}</div>

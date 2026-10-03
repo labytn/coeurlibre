@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { supabase } from '../lib/supabase'
 import { session, refresh } from '../lib/session'
 import { urls } from '../lib/photos'
+import { shareSite } from '../lib/share'
 const router = useRouter()
 const uid = session.value!.user.id
 const f = ref({ display_name: '', birthdate: '', gender: '', looking_for: '', city: '', bio: '', interests: '' })
@@ -12,6 +13,8 @@ const thumbs = ref<string[]>([])
 const err = ref('')
 const busy = ref(false)
 const verified = ref(false)
+const note = ref('')
+async function invite() { note.value = (await shareSite()) === 'copied' ? 'Lien copié : collez-le dans un message.' : '' }
 
 async function loadThumbs() { thumbs.value = await urls(paths.value) }
 
@@ -106,10 +109,12 @@ async function del() {
     </div>
     <p v-if="err" class="text-sm text-red-600">{{ err }}</p>
     <button class="btn w-full" :disabled="busy">Enregistrer</button>
+    <button type="button" class="btn2 w-full" @click="invite">Inviter des amis</button>
+    <p v-if="note" class="text-center text-sm text-zinc-500">{{ note }}</p>
     <div class="flex gap-2 pt-4">
       <button type="button" class="btn2 flex-1" @click="logout">Déconnexion</button>
       <button type="button" class="btn2 flex-1 !text-red-600" @click="del">Supprimer mon compte</button>
     </div>
-    <router-link to="/cgu" class="block text-center text-xs text-zinc-500 underline">Conditions générales d'utilisation</router-link>
+    <div class="flex justify-center gap-4 text-xs text-zinc-500 underline"><router-link to="/cgu">CGU</router-link><router-link to="/privacy">Confidentialité</router-link></div>
   </form>
 </template>

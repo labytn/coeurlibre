@@ -10,6 +10,7 @@ const id = route.params.id as string
 const me = session.value!.user.id
 const msgs = ref<Msg[]>([])
 const name = ref('')
+const demo = ref(false)
 const otherId = ref('')
 const text = ref('')
 const err = ref('')
@@ -21,9 +22,10 @@ function push(m: Msg) { if (!msgs.value.some(x => x.id === m.id)) { msgs.value.p
 
 onMounted(async () => {
   const { data: ms } = await supabase.rpc('my_matches')
-  const m = ((ms ?? []) as { match_id: string; other_id: string; display_name: string }[]).find(x => x.match_id === id)
+  const m = ((ms ?? []) as { match_id: string; other_id: string; display_name: string; is_demo: boolean }[]).find(x => x.match_id === id)
   if (!m) { router.replace('/matches'); return }
   name.value = m.display_name
+  demo.value = !!m.is_demo
   otherId.value = m.other_id
   const { data } = await supabase.from('messages').select('id,sender_id,body,created_at').eq('match_id', id).order('created_at')
   msgs.value = (data ?? []) as Msg[]
@@ -56,7 +58,7 @@ async function flag() {
   <div class="flex h-full flex-col">
     <div class="mb-2 flex items-center justify-between">
       <router-link to="/matches" class="text-sm text-rose-600">← Matchs</router-link>
-      <b>{{ name }}</b>
+      <b>{{ name }} <span v-if="demo" class="ml-1 rounded bg-black/70 px-1.5 py-0.5 text-[10px] tracking-widest text-white">DÉMO</span></b>
       <button class="text-xs text-zinc-500 underline" @click="flag">Signaler</button>
     </div>
     <div ref="box" class="flex-1 space-y-2 overflow-auto">

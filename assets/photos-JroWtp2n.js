@@ -1,0 +1,1 @@
+import{s as n}from"./index-k4Sthsl_.js";async function s(t){if(!t.length)return[];const{data:r}=await n.storage.from("photos").createSignedUrls(t,3600);return(r??[]).map(o=>o.signedUrl??"")}async function i(t){const r=await s(t.map(a=>a.photo_paths[0]).filter(Boolean));let o=0;return t.map(a=>({...a,url:a.photo_paths[0]?r[o++]:""}))}export{s as u,i as w};

@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root { --bg-image: url('/bg/bg-light.jpg'); }
+@media (prefers-color-scheme: dark) { :root { --bg-image: url('/bg/bg-dark.jpg'); } }
+:root { --auth-bg: url('/bg/couple.svg'); }
+@media (min-width: 768px) and (orientation: landscape) { :root { --auth-bg: url('/bg/couple-wide.svg'); } }
 @layer components {
   .inp { @apply w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-base text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100; }
   .btn { @apply rounded-lg bg-rose-600 px-4 py-2 font-semibold text-white disabled:opacity-50; }

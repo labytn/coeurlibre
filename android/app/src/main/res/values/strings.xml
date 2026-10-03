@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Cœur Libre</string>
+    <string name="title_activity_main">Cœur Libre</string>
+    <string name="package_name">fr.coeurlibre.app</string>
+    <string name="custom_url_scheme">fr.coeurlibre.app</string>
+</resources>
