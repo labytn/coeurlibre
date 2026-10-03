@@ -1,0 +1,11 @@
+# Évite la mise en pause du projet Supabase gratuit (inactivité 7 jours).
+# Secrets GitHub requis : SUPABASE_URL, SUPABASE_ANON_KEY
+name: keepalive
+on:
+  schedule: [{ cron: '0 6 */3 * *' }]
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS "${{ secrets.SUPABASE_URL }}/auth/v1/health" -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}"
